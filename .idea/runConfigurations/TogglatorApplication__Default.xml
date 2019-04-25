@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TogglatorApplication: Default" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="togglator.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="net.katrinka.togglator.TogglatorApplication" />
+    <option name="ENABLE_JMX_AGENT" value="false" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

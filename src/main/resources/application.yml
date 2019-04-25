@@ -1,0 +1,12 @@
+togglz:
+  features:
+    BUTTONTEXT:
+      enabled: true
+      strategy: spring-profile
+      param:
+        profiles: german, japanese
+
+      # You need to have a user when calculating percentages for some reason...
+#      strategy: gradual
+#      param:
+#        percentage: 50
