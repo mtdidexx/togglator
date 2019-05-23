@@ -1,0 +1,62 @@
+---
+apiVersion: "extensions/v1beta1"
+kind: "Deployment"
+metadata:
+  name: "togglator"
+  namespace: "default"
+  labels:
+    app: "togglator"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "togglator"
+  template:
+    metadata:
+      labels:
+        app: "togglator"
+    spec:
+      containers:
+        - name: "togglator"
+          image: "us.gcr.io/gdos-mdonahue-sb/togglator:135111554"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "togglator-hpa"
+  namespace: "default"
+  labels:
+    app: "togglator"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "togglator"
+    apiVersion: "apps/v1beta1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        targetAverageUtilization: 80
+
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "togglator-service"
+  namespace: "default"
+  labels:
+    app: "togglator"
+spec:
+  ports:
+    - name: "80-to-80-tcp"
+      protocol: "TCP"
+      port: 80
+    - name: "8080-to-8080-tcp"
+      protocol: "TCP"
+      port: 8080
+  selector:
+    app: "togglator"
+  type: "LoadBalancer"
+  loadBalancerIP: ""

@@ -1,13 +1,15 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.4.RELEASE'
 	id 'java'
+	id "com.google.cloud.tools.jib" version "0.10.1"
 }
 
 apply plugin: 'io.spring.dependency-management'
 
 group = 'net.katrinka'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = JavaVersion.VERSION_1_10
+targetCompatibility = JavaVersion.VERSION_1_10
 
 repositories {
 	mavenCentral()
@@ -27,6 +29,15 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
+	}
+}
+
+jib {
+	from {
+		image = 'gcr.io/lims-tools-prod/openjdk:10.0.2-13-jdk-slim'
+	}
+	to {
+		image = "us.gcr.io/gdos-mdonahue-sb/togglator:${new java.text.SimpleDateFormat("DHms").format(new Date())}"
 	}
 }
 
