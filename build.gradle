@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 plugins {
 	id 'org.springframework.boot' version '2.1.4.RELEASE'
 	id 'java'
@@ -23,7 +25,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.vaadin:vaadin-spring-boot-starter'
 	implementation 'org.togglz:togglz-spring-boot-starter:2.6.1.Final'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
 
 dependencyManagement {
@@ -37,7 +42,7 @@ jib {
 		image = 'gcr.io/lims-tools-prod/openjdk:10.0.2-13-jdk-slim'
 	}
 	to {
-		image = "us.gcr.io/gdos-mdonahue-sb/togglator:${new java.text.SimpleDateFormat("DHms").format(new Date())}"
+		image = "us.gcr.io/gdos-mdonahue-sb/togglator:${new SimpleDateFormat("DHms").format(new Date())}"
 	}
 }
 
