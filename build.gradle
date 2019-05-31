@@ -4,6 +4,7 @@ plugins {
 	id 'org.springframework.boot' version '2.1.4.RELEASE'
 	id 'java'
 	id "com.google.cloud.tools.jib" version "0.10.1"
+	id "io.freefair.lombok" version "3.6.4"
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -27,8 +28,6 @@ dependencies {
 	implementation 'org.togglz:togglz-spring-boot-starter:2.6.1.Final'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compileOnly 'org.projectlombok:lombok:1.18.8'
-	annotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
 
 dependencyManagement {
